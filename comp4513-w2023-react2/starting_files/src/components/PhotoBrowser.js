@@ -1,6 +1,7 @@
 import React from "react";
 import PhotoList from './PhotoList.js';
 import EditPhotoDetails from './EditPhotoDetails.js';
+import FavoriteBar from "./FavoriteBar"
 
 const PhotoBrowser = props => {
    // the first photo in fetched data has an id of 15
@@ -12,7 +13,8 @@ const PhotoBrowser = props => {
    
    return (
       <section className="container">
-         <PhotoList photos={props.photos} showImageDetails={showImageDetails} />  
+          
+         <PhotoList photos={props.photos} showImageDetails={showImageDetails} setFavorites={props.setFavorites} favorites={props.favorites}/>  
          <EditPhotoDetails photos={props.photos} currentPhoto={currentPhoto} updatePhoto={props.updatePhoto} /> 
       </section>
    );

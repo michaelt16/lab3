@@ -1,13 +1,16 @@
 import './App.css';
+import './index.css'
 import React, { useEffect, useState }  from "react";
 import HeaderApp from './components/HeaderApp.js';
 import PhotoBrowser from './components/PhotoBrowser.js';
 import * as cloneDeep from 'lodash/cloneDeep';
 import { Route } from 'react-router-dom';
 import Home from './components/Home.js';
+import FavoriteBar from './components/FavoriteBar';
 
 function App() {
   const [photos, setPhotos] = useState([]);
+  const [favorites,setFavorites]=useState([])
 
 /*   useEffect( () => {
     const url = "https://www.randyconnolly.com/funwebdev/3rd/api/travel/images.php?iso=gb";
@@ -24,6 +27,7 @@ function App() {
         const url = "https://www.randyconnolly.com/funwebdev/3rd/api/travel/images.php?iso=gb";
         const response = await fetch(url);
         const data = await response.json();
+        console.log(data)
         setPhotos(data);
       }
       catch (err) {
@@ -58,9 +62,15 @@ function App() {
         <Route path='/home' exact component={Home} />
         <Route path='/browse' exact 
           render={ (props) => 
+            <div>
+            <FavoriteBar favorites={favorites} 
+            setFavorites={setFavorites}/>
              <PhotoBrowser 
                  photos={photos}
-                 updatePhoto={updatePhoto} /> } 
+                 updatePhoto={updatePhoto} 
+                 setFavorites={setFavorites}
+                 favorites={favorites}/> 
+                 </div>} 
          />
     </main>
   );
